@@ -7,6 +7,7 @@ import { MdRestaurant } from "react-icons/md";
 import placesData from "@/data/places.json";
 import PlaceCard from "@/components/PlaceCard";
 import type { Place } from "@/types/place";
+import CategoryButton from "@/components/CategoryButton";
 
 const ALL_FILTERS = ["all", "food", "grocery", "community", "neighborhood"] as const;
 type FilterKey = (typeof ALL_FILTERS)[number];
@@ -29,7 +30,7 @@ export default function SpotsPage() {
       : places.filter((p) => p.category === activeFilter);
 
   return (
-    <div className="bg-grid-texture min-h-screen pt-24 pb-20">
+    <div className="bg-grid-texture min-h-screen pt-32 pb-20">
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="mb-10">
@@ -60,20 +61,14 @@ export default function SpotsPage() {
             const isActive = activeFilter === f;
             const { label, Icon } = filterConfig[f];
             return (
-              <button
+              <CategoryButton
                 key={f}
+                isActive={isActive}
                 onClick={() => setActiveFilter(f)}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-xl border transition-all active:scale-95"
-                style={{
-                  fontFamily: "Inter, sans-serif",
-                  backgroundColor: isActive ? "#2E8B57" : "#ffffff",
-                  color: isActive ? "#ffffff" : "#475569",
-                  borderColor: isActive ? "#2E8B57" : "#E2E8F0",
-                }}
               >
                 <Icon size={13} />
                 {label}
-              </button>
+              </CategoryButton>
             );
           })}
           <span
