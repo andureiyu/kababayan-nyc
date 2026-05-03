@@ -16,13 +16,13 @@ export default function CategoryButton({ isActive, onClick, children }: Category
       animate={{
         x: isActive ? 3 : 0,
         y: isActive ? 3 : 0,
-        backgroundColor: isActive ? "#2E8B57" : "#ffffff",
+        backgroundColor: isActive ? "#3f7366" : "#ffffff",
         color: isActive ? "#ffffff" : "#0F172A",
         boxShadow: isActive ? "0px 0px 0px #0F172A" : "3px 3px 0px #0F172A",
       }}
       whileHover={
         !isActive
-          ? { x: 1.5, y: 1.5, boxShadow: "1.5px 1.5px 0px #0F172A" }
+          ? { x: 1.5, y: 1.5, boxShadow: "1.5px 1.5px 0px #0F172A", backgroundColor: "#f0faf7" }
           : {}
       }
       whileTap={{ x: 3, y: 3, boxShadow: "0px 0px 0px #0F172A", scale: 0.97 }}

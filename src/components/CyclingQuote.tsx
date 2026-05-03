@@ -119,7 +119,7 @@ export default function CyclingQuote() {
               width: i === index ? 24 : 8,
               height: 8,
               borderRadius: 4,
-              background: i === index ? "#2E8B57" : "#475569",
+              background: i === index ? "#3f7366" : "#475569",
               border: "none",
               cursor: "pointer",
               transition: "all 0.3s ease",

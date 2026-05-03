@@ -89,7 +89,7 @@ export default function PlaceCard({ place, onViewMap }: Props) {
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1 inline-flex items-center justify-center gap-1.5 text-xs font-semibold py-2.5 px-3 rounded-xl text-white transition-all hover:opacity-90 active:scale-95"
-          style={{ backgroundColor: "#2E8B57", fontFamily: "Inter, sans-serif" }}
+          style={{ backgroundColor: "#3f7366", fontFamily: "Inter, sans-serif" }}
         >
           <FiExternalLink size={11} />
           Open in Maps

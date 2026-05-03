@@ -201,7 +201,7 @@ export default function AboutPage() {
           <Link
             href="/"
             className="inline-flex items-center justify-center gap-2 text-sm font-semibold px-5 py-3 rounded-xl text-white transition-all hover:opacity-90 active:scale-95"
-            style={{ backgroundColor: "#2E8B57", fontFamily: "Inter, sans-serif" }}
+            style={{ backgroundColor: "#3f7366", fontFamily: "Inter, sans-serif" }}
           >
             Explore the Map
             <FiArrowRight size={13} />
