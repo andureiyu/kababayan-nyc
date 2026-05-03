@@ -15,6 +15,9 @@ import {
 import { MdRestaurant } from "react-icons/md";
 import placesData from "@/data/places.json";
 import type { Place } from "@/types/place";
+import CyclingHero from "@/components/CyclingHero";
+import StatCounter from "@/components/StatCounter";
+import CategoryButton from "@/components/CategoryButton";
 
 const MapExplorer = dynamic(() => import("@/components/MapExplorer"), {
   ssr: false,
@@ -77,7 +80,7 @@ export default function HomePage() {
       : places.filter((p) => p.category === activeCategory);
 
   return (
-    <div className="bg-grid-texture min-h-screen pt-24 pb-16">
+    <div className="bg-grid-texture min-h-screen pt-32 pb-16">
       {/* Hero Section */}
       <section className="max-w-6xl mx-auto px-4 mb-10">
         <div className="text-center mb-8">
@@ -87,15 +90,7 @@ export default function HomePage() {
           >
             Your New York City Filipino Community Guide
           </span>
-          <h1
-            className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight mb-4"
-            style={{ fontFamily: "Nunito, sans-serif", color: "#0F172A" }}
-          >
-            Discover Your{" "}
-            <span style={{ color: "#2E8B57" }}>Kababayan</span>
-            <br />
-            Community in NYC
-          </h1>
+          <CyclingHero />
           <p
             className="text-base md:text-lg max-w-xl mx-auto leading-relaxed"
             style={{ color: "#475569", fontFamily: "Inter, sans-serif" }}
@@ -106,27 +101,10 @@ export default function HomePage() {
         </div>
 
         {/* Stats row */}
-        <div className="flex flex-wrap justify-center gap-8 mb-10">
-          {[
-            { value: "12+", label: "Curated Spots" },
-            { value: "4", label: "Boroughs" },
-            { value: "100K+", label: "Fil-Am Community" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p
-                className="text-2xl font-extrabold"
-                style={{ color: "#2E8B57", fontFamily: "Nunito, sans-serif" }}
-              >
-                {stat.value}
-              </p>
-              <p
-                className="text-xs mt-0.5"
-                style={{ color: "#94A3B8", fontFamily: "Inter, sans-serif" }}
-              >
-                {stat.label}
-              </p>
-            </div>
-          ))}
+        <div className="flex flex-wrap justify-center gap-10 mb-10">
+          <StatCounter value="12+" label="Curated Spots" delay={0} />
+          <StatCounter value="4" label="Boroughs" delay={0.15} />
+          <StatCounter value="100K+" label="Fil-Am Community" delay={0.3} />
         </div>
       </section>
 
@@ -138,20 +116,14 @@ export default function HomePage() {
             const isActive = activeCategory === cat;
             const { label, Icon } = categoryConfig[cat];
             return (
-              <button
+              <CategoryButton
                 key={cat}
+                isActive={isActive}
                 onClick={() => setActiveCategory(cat)}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-xl border transition-all active:scale-95"
-                style={{
-                  fontFamily: "Inter, sans-serif",
-                  backgroundColor: isActive ? "#2E8B57" : "#ffffff",
-                  color: isActive ? "#ffffff" : "#475569",
-                  borderColor: isActive ? "#2E8B57" : "#E2E8F0",
-                }}
               >
                 <Icon size={13} />
                 {label}
-              </button>
+              </CategoryButton>
             );
           })}
           <span

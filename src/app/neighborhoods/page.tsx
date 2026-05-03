@@ -129,7 +129,7 @@ const neighborhoods: Neighborhood[] = [
 
 export default function NeighborhoodsPage() {
   return (
-    <div className="bg-grid-texture min-h-screen pt-24 pb-20">
+    <div className="bg-grid-texture min-h-screen pt-32 pb-20">
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="mb-12">

@@ -9,6 +9,7 @@ import {
   FiArrowRight,
 } from "react-icons/fi";
 import type { ElementType } from "react";
+import CyclingQuote from "@/components/CyclingQuote";
 
 type FeatureItem = {
   Icon: ElementType;
@@ -51,7 +52,7 @@ const features: FeatureItem[] = [
 
 export default function AboutPage() {
   return (
-    <div className="bg-grid-texture min-h-screen pt-24 pb-20">
+    <div className="bg-grid-texture min-h-screen pt-32 pb-20">
       <div className="max-w-3xl mx-auto px-4">
         {/* Header */}
         <div className="mb-12">
@@ -187,23 +188,12 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Community note */}
+        {/* Community note — cycling multilingual quote */}
         <div
-          className="rounded-2xl p-8 mb-10 text-center border"
+          className="rounded-2xl p-8 mb-10 border"
           style={{ background: "#0F172A", borderColor: "#0F172A" }}
         >
-          <p
-            className="text-xl md:text-2xl mb-2 font-extrabold text-white leading-snug"
-            style={{ fontFamily: "Nunito, sans-serif" }}
-          >
-            &ldquo;Kahit saan ka man pumunta, hindi ka nag-iisa.&rdquo;
-          </p>
-          <p
-            className="text-sm italic"
-            style={{ color: "#94A3B8", fontFamily: "Inter, sans-serif" }}
-          >
-            &ldquo;Wherever you go, you are never alone.&rdquo;
-          </p>
+          <CyclingQuote />
         </div>
 
         {/* CTA */}
