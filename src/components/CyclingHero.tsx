@@ -82,7 +82,7 @@ export default function CyclingHero() {
                     style={{
                       display: "inline-block",
                       transformOrigin: "bottom center",
-                      color: word === phrase.keyword ? "#2E8B57" : undefined,
+                      color: word === phrase.keyword ? "#3f7366" : undefined,
                     }}
                   >
                     {char}
@@ -105,7 +105,7 @@ export default function CyclingHero() {
               width: i === phraseIndex ? 22 : 7,
               height: 7,
               borderRadius: 4,
-              background: i === phraseIndex ? "#2E8B57" : "#CBD5E1",
+              background: i === phraseIndex ? "#3f7366" : "#CBD5E1",
               border: "none",
               cursor: "pointer",
               transition: "all 0.3s ease",

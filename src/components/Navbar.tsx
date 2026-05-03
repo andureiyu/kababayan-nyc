@@ -22,7 +22,7 @@ export default function Navbar() {
         <Link
           href="/"
           className="font-display font-800 text-xl tracking-tight"
-          style={{ color: "#2E8B57", fontWeight: 800, fontFamily: "Nunito, sans-serif" }}
+          style={{ color: "#3f7366", fontWeight: 800, fontFamily: "Nunito, sans-serif" }}
         >
           Kababayan <span style={{ color: "#0F172A" }}>NY</span>
         </Link>
@@ -53,7 +53,7 @@ export default function Navbar() {
           <Link
             href="/spots"
             className="text-sm font-semibold px-4 py-2 rounded-xl text-white transition-all hover:opacity-90 active:scale-95"
-            style={{ backgroundColor: "#2E8B57", fontFamily: "Inter, sans-serif" }}
+            style={{ backgroundColor: "#3f7366", fontFamily: "Inter, sans-serif" }}
           >
             Explore Spots
           </Link>
@@ -103,7 +103,7 @@ export default function Navbar() {
             href="/spots"
             onClick={() => setMenuOpen(false)}
             className="mt-1 text-sm font-semibold px-4 py-2.5 rounded-xl text-white text-center"
-            style={{ backgroundColor: "#2E8B57" }}
+            style={{ backgroundColor: "#3f7366" }}
           >
             Explore Spots
           </Link>
