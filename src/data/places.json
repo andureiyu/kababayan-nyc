@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "name": "Jollibee Times Square",
+    "category": "food",
+    "neighborhood": "Manhattan",
+    "latitude": 40.7580,
+    "longitude": -73.9855,
+    "description": "Iconic Filipino fast-food chain loved by Filipinos worldwide. Famous for Chickenjoy and palabok.",
+    "address": "605 8th Ave, New York, NY 10036",
+    "mapsUrl": "https://maps.google.com/?q=Jollibee+Times+Square+NYC"
+  },
+  {
+    "id": 2,
+    "name": "Ihawan Restaurant",
+    "category": "food",
+    "neighborhood": "Woodside, Queens",
+    "latitude": 40.7463,
+    "longitude": -73.9010,
+    "description": "Beloved Filipino BBQ spot in Woodside serving classic grilled meats, adobo, and sinigang.",
+    "address": "40-06 70th St, Woodside, NY 11377",
+    "mapsUrl": "https://maps.google.com/?q=Ihawan+Restaurant+Woodside+NYC"
+  },
+  {
+    "id": 3,
+    "name": "Renee's Kitchenette & Grill",
+    "category": "food",
+    "neighborhood": "Woodside, Queens",
+    "latitude": 40.7457,
+    "longitude": -73.9007,
+    "description": "Homestyle Filipino cooking in the heart of Woodside. Try the kare-kare and lechon kawali.",
+    "address": "65-30 Roosevelt Ave, Woodside, NY 11377",
+    "mapsUrl": "https://maps.google.com/?q=Renee%27s+Kitchenette+Woodside+NYC"
+  },
+  {
+    "id": 4,
+    "name": "Phil-Am Food Mart",
+    "category": "grocery",
+    "neighborhood": "Woodside, Queens",
+    "latitude": 40.7454,
+    "longitude": -73.9015,
+    "description": "Premier Filipino grocery store stocking Philippine imports, fresh produce, and specialty ingredients.",
+    "address": "69-14 Roosevelt Ave, Woodside, NY 11377",
+    "mapsUrl": "https://maps.google.com/?q=Phil-Am+Food+Mart+Woodside+NYC"
+  },
+  {
+    "id": 5,
+    "name": "Seafood City Supermarket",
+    "category": "grocery",
+    "neighborhood": "Woodside, Queens",
+    "latitude": 40.7448,
+    "longitude": -73.9022,
+    "description": "Large Filipino supermarket chain with a wide selection of Filipino products, fresh seafood, and a food court.",
+    "address": "69-02 Roosevelt Ave, Woodside, NY 11377",
+    "mapsUrl": "https://maps.google.com/?q=Seafood+City+Supermarket+Woodside+NYC"
+  },
+  {
+    "id": 6,
+    "name": "FilAm Arts — Filipino American Arts Exposition",
+    "category": "community",
+    "neighborhood": "Manhattan",
+    "latitude": 40.7282,
+    "longitude": -73.9942,
+    "description": "Cultural organization celebrating Filipino arts, heritage events, and community gatherings in NYC.",
+    "address": "New York, NY",
+    "mapsUrl": "https://maps.google.com/?q=FilAm+Arts+NYC"
+  },
+  {
+    "id": 7,
+    "name": "Woodside — Little Manila",
+    "category": "neighborhood",
+    "neighborhood": "Woodside, Queens",
+    "latitude": 40.7455,
+    "longitude": -73.9009,
+    "description": "The heart of Filipino NYC. Roosevelt Ave from 69th to 72nd St is lined with Filipino restaurants, bakeries, and stores.",
+    "address": "Roosevelt Ave, Woodside, NY 11377",
+    "mapsUrl": "https://maps.google.com/?q=Little+Manila+Woodside+Queens+NYC"
+  },
+  {
+    "id": 8,
+    "name": "Krystal's Cafe",
+    "category": "food",
+    "neighborhood": "Woodside, Queens",
+    "latitude": 40.7461,
+    "longitude": -73.9018,
+    "description": "Cozy Filipino café known for halo-halo, pan de sal, and traditional pastries.",
+    "address": "70-19 Roosevelt Ave, Woodside, NY 11377",
+    "mapsUrl": "https://maps.google.com/?q=Krystal%27s+Cafe+Woodside+NYC"
+  },
+  {
+    "id": 9,
+    "name": "Anak Filipino Kitchen",
+    "category": "food",
+    "neighborhood": "Brooklyn",
+    "latitude": 40.6501,
+    "longitude": -73.9496,
+    "description": "Modern Filipino restaurant in Brooklyn serving contemporary takes on classic Filipino dishes.",
+    "address": "Brooklyn, NY",
+    "mapsUrl": "https://maps.google.com/?q=Anak+Filipino+Kitchen+Brooklyn+NYC"
+  },
+  {
+    "id": 10,
+    "name": "Philippine Consulate General NYC",
+    "category": "community",
+    "neighborhood": "Manhattan",
+    "latitude": 40.7614,
+    "longitude": -73.9693,
+    "description": "Official Philippine government consulate serving Filipinos in New York with passport, visa, and community services.",
+    "address": "556 5th Ave, New York, NY 10036",
+    "mapsUrl": "https://maps.google.com/?q=Philippine+Consulate+General+NYC"
+  },
+  {
+    "id": 11,
+    "name": "Engeline's Restaurant",
+    "category": "food",
+    "neighborhood": "Woodside, Queens",
+    "latitude": 40.7450,
+    "longitude": -73.9030,
+    "description": "Family-run Filipino restaurant serving authentic home-style cooking. Known for their bangus and dinuguan.",
+    "address": "Woodside, NY 11377",
+    "mapsUrl": "https://maps.google.com/?q=Engeline%27s+Restaurant+Woodside+NYC"
+  },
+  {
+    "id": 12,
+    "name": "Ridgewood Filipino Community Center",
+    "category": "community",
+    "neighborhood": "Queens",
+    "latitude": 40.7050,
+    "longitude": -73.9050,
+    "description": "Community hub offering language classes, cultural events, and support services for Filipino-Americans.",
+    "address": "Queens, NY",
+    "mapsUrl": "https://maps.google.com/?q=Filipino+Community+Center+Queens+NYC"
+  }
+]

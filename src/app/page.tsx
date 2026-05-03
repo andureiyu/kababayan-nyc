@@ -1,65 +1,232 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import {
+  FiMap,
+  FiShoppingCart,
+  FiUsers,
+  FiGrid,
+  FiArrowRight,
+  FiInfo,
+  FiMapPin,
+} from "react-icons/fi";
+import { MdRestaurant } from "react-icons/md";
+import placesData from "@/data/places.json";
+import type { Place } from "@/types/place";
+
+const MapExplorer = dynamic(() => import("@/components/MapExplorer"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center h-full bg-[#F8FAFC] rounded-2xl">
+      <p style={{ color: "#94A3B8", fontFamily: "Inter, sans-serif" }}>Loading map…</p>
+    </div>
+  ),
+});
+
+const ALL_CATEGORIES = ["all", "food", "grocery", "community", "neighborhood"] as const;
+
+type CategoryKey = (typeof ALL_CATEGORIES)[number];
+
+const categoryConfig: Record<
+  CategoryKey,
+  { label: string; Icon: React.ElementType }
+> = {
+  all: { label: "All", Icon: FiGrid },
+  food: { label: "Food", Icon: MdRestaurant },
+  grocery: { label: "Grocery", Icon: FiShoppingCart },
+  community: { label: "Community", Icon: FiUsers },
+  neighborhood: { label: "Neighborhoods", Icon: FiMapPin },
+};
+
+const navCards = [
+  {
+    href: "/neighborhoods",
+    title: "Neighborhood Guide",
+    desc: "Discover key Filipino neighborhoods across NYC boroughs.",
+    Icon: FiMap,
+    accent: "#1E3A8A",
+    bg: "#EFF6FF",
+  },
+  {
+    href: "/spots",
+    title: "Filipino Spots",
+    desc: "Curated restaurants, grocery stores, and community hubs.",
+    Icon: FiMapPin,
+    accent: "#2E8B57",
+    bg: "#DDF5E6",
+  },
+  {
+    href: "/about",
+    title: "About Kababayan NY",
+    desc: "Learn about the mission and purpose of this platform.",
+    Icon: FiInfo,
+    accent: "#F59E0B",
+    bg: "#FFFBEB",
+  },
+];
+
+export default function HomePage() {
+  const [activeCategory, setActiveCategory] = useState<CategoryKey>("all");
+  const places = placesData as Place[];
+
+  const filtered =
+    activeCategory === "all"
+      ? places
+      : places.filter((p) => p.category === activeCategory);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="bg-grid-texture min-h-screen pt-24 pb-16">
+      {/* Hero Section */}
+      <section className="max-w-6xl mx-auto px-4 mb-10">
+        <div className="text-center mb-8">
+          <span
+            className="inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-4"
+            style={{ background: "#DDF5E6", color: "#2E8B57", fontFamily: "Inter, sans-serif" }}
+          >
+            Your New York City Filipino Community Guide
+          </span>
+          <h1
+            className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight mb-4"
+            style={{ fontFamily: "Nunito, sans-serif", color: "#0F172A" }}
+          >
+            Discover Your{" "}
+            <span style={{ color: "#2E8B57" }}>Kababayan</span>
+            <br />
+            Community in NYC
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p
+            className="text-base md:text-lg max-w-xl mx-auto leading-relaxed"
+            style={{ color: "#475569", fontFamily: "Inter, sans-serif" }}
+          >
+            Explore Filipino community hubs, grocery stores, restaurants, and
+            neighborhoods across New York City — all in one place.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Stats row */}
+        <div className="flex flex-wrap justify-center gap-8 mb-10">
+          {[
+            { value: "12+", label: "Curated Spots" },
+            { value: "4", label: "Boroughs" },
+            { value: "100K+", label: "Fil-Am Community" },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center">
+              <p
+                className="text-2xl font-extrabold"
+                style={{ color: "#2E8B57", fontFamily: "Nunito, sans-serif" }}
+              >
+                {stat.value}
+              </p>
+              <p
+                className="text-xs mt-0.5"
+                style={{ color: "#94A3B8", fontFamily: "Inter, sans-serif" }}
+              >
+                {stat.label}
+              </p>
+            </div>
+          ))}
         </div>
-      </main>
+      </section>
+
+      {/* Map + Filters */}
+      <section className="max-w-6xl mx-auto px-4">
+        {/* Category filters */}
+        <div className="flex flex-wrap gap-2 mb-4 items-center">
+          {ALL_CATEGORIES.map((cat) => {
+            const isActive = activeCategory === cat;
+            const { label, Icon } = categoryConfig[cat];
+            return (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-xl border transition-all active:scale-95"
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  backgroundColor: isActive ? "#2E8B57" : "#ffffff",
+                  color: isActive ? "#ffffff" : "#475569",
+                  borderColor: isActive ? "#2E8B57" : "#E2E8F0",
+                }}
+              >
+                <Icon size={13} />
+                {label}
+              </button>
+            );
+          })}
+          <span
+            className="ml-auto text-xs"
+            style={{ color: "#94A3B8", fontFamily: "Inter, sans-serif" }}
+          >
+            {filtered.length} location{filtered.length !== 1 ? "s" : ""} shown
+          </span>
+        </div>
+
+        {/* Map */}
+        <div
+          className="rounded-2xl overflow-hidden border"
+          style={{ height: 520, borderColor: "#E2E8F0" }}
+        >
+          <MapExplorer places={filtered} />
+        </div>
+
+        <p
+          className="text-xs mt-2 text-center"
+          style={{ color: "#94A3B8", fontFamily: "Inter, sans-serif" }}
+        >
+          Click any pin on the map to view details and open navigation.
+        </p>
+      </section>
+
+      {/* Quick nav cards */}
+      <section className="max-w-6xl mx-auto px-4 mt-14">
+        <h2
+          className="text-2xl font-extrabold mb-6"
+          style={{ fontFamily: "Nunito, sans-serif", color: "#0F172A" }}
+        >
+          Explore Kababayan NY
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {navCards.map((card) => {
+            const { Icon } = card;
+            return (
+              <Link
+                key={card.href}
+                href={card.href}
+                className="place-card bg-white rounded-2xl p-6 border flex flex-col gap-3"
+                style={{ borderColor: "#E2E8F0", textDecoration: "none" }}
+              >
+                <span
+                  className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                  style={{ background: card.bg }}
+                >
+                  <Icon size={18} color={card.accent} />
+                </span>
+                <h3
+                  className="font-bold text-base"
+                  style={{ color: "#0F172A", fontFamily: "Nunito, sans-serif" }}
+                >
+                  {card.title}
+                </h3>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: "#475569", fontFamily: "Inter, sans-serif" }}
+                >
+                  {card.desc}
+                </p>
+                <span
+                  className="inline-flex items-center gap-1 text-sm font-semibold mt-auto"
+                  style={{ color: card.accent, fontFamily: "Inter, sans-serif" }}
+                >
+                  Explore <FiArrowRight size={13} />
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
     </div>
   );
 }
+
+
