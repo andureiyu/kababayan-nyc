@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   FiMap,
   FiShoppingCart,
@@ -11,6 +12,8 @@ import {
   FiArrowRight,
   FiInfo,
   FiMapPin,
+  FiMaximize2,
+  FiMinimize2,
 } from "react-icons/fi";
 import { MdRestaurant } from "react-icons/md";
 import placesData from "@/data/places.json";
@@ -72,12 +75,30 @@ const navCards = [
 
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState<CategoryKey>("all");
+  const [isMapFullscreen, setIsMapFullscreen] = useState(false);
   const places = placesData as Place[];
 
   const filtered =
     activeCategory === "all"
       ? places
       : places.filter((p) => p.category === activeCategory);
+
+  useEffect(() => {
+    document.body.style.overflow = isMapFullscreen ? "hidden" : "";
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMapFullscreen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMapFullscreen]);
 
   return (
     <div className="bg-grid-texture min-h-screen pt-32 pb-16">
@@ -102,7 +123,7 @@ export default function HomePage() {
 
         {/* Stats row */}
         <div className="flex flex-wrap justify-center gap-10 mb-10">
-          <StatCounter value="12+" label="Curated Spots" delay={0} />
+          <StatCounter value="17+" label="Curated Spots" delay={0} />
           <StatCounter value="4" label="Boroughs" delay={0.15} />
           <StatCounter value="100K+" label="Fil-Am Community" delay={0.3} />
         </div>
@@ -135,12 +156,67 @@ export default function HomePage() {
         </div>
 
         {/* Map */}
-        <div
-          className="rounded-2xl overflow-hidden border"
-          style={{ height: 520, borderColor: "#E2E8F0" }}
+        <motion.div
+          layout
+          transition={{ type: "spring", stiffness: 220, damping: 28 }}
+          className={
+            isMapFullscreen
+              ? "fixed inset-3 md:inset-6 z-100 overflow-hidden border bg-white"
+              : "relative rounded-2xl overflow-hidden border"
+          }
+          style={{
+            height: isMapFullscreen ? "auto" : 520,
+            borderColor: "#E2E8F0",
+            borderRadius: isMapFullscreen ? 18 : 16,
+            boxShadow: isMapFullscreen ? "0 24px 80px rgba(15,23,42,0.24)" : "none",
+          }}
         >
-          <MapExplorer places={filtered} />
-        </div>
+          <div className="absolute right-3 top-3 z-500 flex gap-2">
+            <button
+              type="button"
+              onClick={() => setIsMapFullscreen((current) => !current)}
+              aria-label={isMapFullscreen ? "Exit fullscreen map" : "Open fullscreen map"}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-xl border bg-white text-[#0F172A] shadow-lg transition-all hover:bg-[#F8FAFC] active:scale-95"
+              style={{ borderColor: "#E2E8F0" }}
+            >
+              {isMapFullscreen ? <FiMinimize2 size={17} /> : <FiMaximize2 size={17} />}
+            </button>
+          </div>
+
+          {isMapFullscreen && (
+            <div
+              className="absolute left-4 top-4 z-500 rounded-xl border bg-white/95 px-4 py-3 shadow-lg"
+              style={{ borderColor: "#E2E8F0" }}
+            >
+              <p
+                className="text-sm font-extrabold leading-none"
+                style={{ color: "#0F172A", fontFamily: "Nunito, sans-serif" }}
+              >
+                Kababayan NY Map
+              </p>
+              <p className="mt-1 text-xs" style={{ color: "#94A3B8", fontFamily: "Inter, sans-serif" }}>
+                {filtered.length} location{filtered.length !== 1 ? "s" : ""} shown
+              </p>
+            </div>
+          )}
+
+          <MapExplorer places={filtered} activeCategory={activeCategory} />
+        </motion.div>
+
+        <AnimatePresence>
+          {isMapFullscreen && (
+            <motion.button
+              type="button"
+              aria-label="Close fullscreen map"
+              className="fixed inset-0 z-90 bg-[#0F172A]/35"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setIsMapFullscreen(false)}
+            />
+          )}
+        </AnimatePresence>
 
         <p
           className="text-xs mt-2 text-center"

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, animate } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 interface StatCounterProps {
   value: string;
@@ -12,25 +12,28 @@ interface StatCounterProps {
 export default function StatCounter({ value, label, delay = 0 }: StatCounterProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-40px" });
-  const [display, setDisplay] = useState("0");
+  const statParts = useMemo(() => {
+    const match = value.match(/^(\d+)(.*)$/);
+    if (!match) return null;
+
+    return {
+      number: parseInt(match[1], 10),
+      suffix: match[2],
+    };
+  }, [value]);
+  const [display, setDisplay] = useState(statParts ? "0" : value);
 
   useEffect(() => {
-    if (!isInView) return;
-    const match = value.match(/^(\d+)(.*)$/);
-    if (!match) {
-      setDisplay(value);
-      return;
-    }
-    const num = parseInt(match[1], 10);
-    const suffix = match[2];
-    const controls = animate(0, num, {
+    if (!isInView || !statParts) return;
+
+    const controls = animate(0, statParts.number, {
       duration: 1.4,
       delay,
       ease: "easeOut",
-      onUpdate: (v) => setDisplay(Math.round(v) + suffix),
+      onUpdate: (v) => setDisplay(Math.round(v) + statParts.suffix),
     });
     return controls.stop;
-  }, [isInView, value, delay]);
+  }, [isInView, statParts, delay]);
 
   return (
     <motion.div
