@@ -6,6 +6,10 @@ export type Place = {
   latitude: number;
   longitude: number;
   description: string;
+  subtitle?: string;
+  filipinoPresence?: string;
+  keySpots?: string[];
+  tag?: string;
   address: string;
   mapsUrl: string;
 };
